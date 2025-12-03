@@ -45,7 +45,7 @@ export default function ParallaxCards() {
   const circleScale = useTransform(smoothProgress, [0, 0.3, 0.6, 1], [0.95, 1, 1.05, 1]);
 
   return (
-    <section ref={sectionRef} className="min-h-[180vh] flex items-center justify-center px-6 pt-0 pb-32 relative overflow-x-hidden bg-[#000000]">
+    <section ref={sectionRef} className="min-h-[120vh] sm:min-h-[150vh] md:min-h-[180vh] flex items-center justify-center px-4 sm:px-6 pt-0 pb-16 sm:pb-24 md:pb-32 relative overflow-x-hidden bg-[#000000]">
       {/* Background Layer - 4 Radial Circles synced with card drift */}
       <motion.div 
         className="absolute inset-0 overflow-hidden pointer-events-none will-change-transform"
@@ -114,12 +114,12 @@ export default function ParallaxCards() {
 
       <div
         ref={containerRef}
-        className="relative w-full max-w-[600px] h-[360px] md:h-[420px] z-10"
+        className="relative w-full max-w-[340px] sm:max-w-[450px] md:max-w-[600px] h-[280px] sm:h-80 md:h-[360px] lg:h-[420px] z-10"
         style={{ perspective: "1000px" }}
       >
         {/* Card 1 - Bottom (drifts down-left) */}
         <motion.div
-          className="absolute inset-0 rounded-3xl backdrop-blur-xl"
+          className="absolute inset-0 rounded-3xl backdrop-blur-xl overflow-hidden"
           style={{
             background:
               "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
@@ -131,6 +131,12 @@ export default function ParallaxCards() {
             scale: card1Scale,
             opacity: card1Opacity,
             rotateZ: card1Rotate,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transformStyle: 'preserve-3d',
+            WebkitFontSmoothing: 'antialiased',
+            willChange: 'transform',
+            isolation: 'isolate',
           }}
         >
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
@@ -146,7 +152,7 @@ export default function ParallaxCards() {
 
         {/* Card 2 - Middle (stays centered with content) */}
         <motion.div
-          className="absolute inset-0 rounded-3xl backdrop-blur-xl flex flex-col items-center justify-center p-8 md:p-12"
+          className="absolute inset-0 rounded-3xl backdrop-blur-xl flex flex-col items-center justify-center p-8 md:p-12 overflow-hidden"
           style={{
             background:
               "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)",
@@ -158,6 +164,12 @@ export default function ParallaxCards() {
             scale: card2Scale,
             opacity: card2Opacity,
             rotateZ: card2Rotate,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transformStyle: 'preserve-3d',
+            WebkitFontSmoothing: 'antialiased',
+            willChange: 'transform',
+            isolation: 'isolate',
           }}
         >
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
@@ -171,15 +183,15 @@ export default function ParallaxCards() {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 text-center">
+          <div className="relative z-10 text-center px-4">
             {/* Description */}
-            <p className="text-white/60 text-sm md:text-base max-w-lg mx-auto tracking-wide leading-relaxed">
+            <p className="text-white/60 text-xs sm:text-sm md:text-base max-w-lg mx-auto tracking-wide leading-relaxed">
               The future of AI identity management. Secure, decentralized, and
               built for the next generation of autonomous systems.
             </p>
 
             {/* CTA Button */}
-            <button className="mt-8 px-8 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105">
+            <button className="mt-6 sm:mt-8 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/20 text-white text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation">
               Get Started
             </button>
           </div>
@@ -187,7 +199,7 @@ export default function ParallaxCards() {
 
         {/* Card 3 - Top (drifts up-right with logo only) */}
         <motion.div
-          className="absolute inset-0 rounded-3xl backdrop-blur-xl flex flex-col items-center justify-center p-8 md:p-12"
+          className="absolute inset-0 rounded-3xl backdrop-blur-xl flex flex-col items-center justify-center p-8 md:p-12 overflow-hidden"
           style={{
             background:
               "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%)",
@@ -199,6 +211,12 @@ export default function ParallaxCards() {
             scale: card3Scale,
             opacity: card3Opacity,
             rotateZ: card3Rotate,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transformStyle: 'preserve-3d',
+            WebkitFontSmoothing: 'antialiased',
+            willChange: 'transform',
+            isolation: 'isolate',
           }}
         >
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
@@ -212,16 +230,16 @@ export default function ParallaxCards() {
           </div>
 
           {/* Content - Logo and text side by side */}
-          <div className="relative z-10 flex items-center justify-center gap-4">
+          <div className="relative z-10 flex items-center justify-center gap-3 sm:gap-4 px-4">
             {/* Logo */}
             <img
               src="/Transparent logo 1.png"
               alt="Orynth Logo"
-              className="h-16 md:h-20 w-auto"
+              className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto"
             />
 
             {/* Text - using same style as navbar */}
-            <span className="text-white/60 text-4xl md:text-5xl font-normal tracking-[0.2em] uppercase">
+            <span className="text-white/60 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal tracking-[0.15em] sm:tracking-[0.2em] uppercase">
               ORYNTH
             </span>
           </div>

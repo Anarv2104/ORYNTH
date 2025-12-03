@@ -8,11 +8,26 @@ html, body {
   background: #0B0B0F;
   color: white;
   overflow-x: hidden;
-  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
+/* Smooth touch interactions on mobile */
 * {
-  cursor: none !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Hide cursor only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  html, body {
+    cursor: none;
+  }
+  
+  * {
+    cursor: none !important;
+  }
 }
 
 /* Hide scrollbar */

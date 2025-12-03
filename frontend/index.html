@@ -4,10 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Preconnect/prefetch to speed up Spline scene and runtime downloads -->
+    <!-- Aggressive preconnect/prefetch for Spline assets with high priority -->
     <link rel="preconnect" href="https://prod.spline.design" crossorigin />
+    <link rel="preconnect" href="https://cdn.spline.design" crossorigin />
     <link rel="dns-prefetch" href="https://prod.spline.design" />
-    <link rel="preload" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" as="fetch" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.spline.design" />
+    
+    <!-- High priority preload for Spline scene -->
+    <link rel="preload" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" as="fetch" crossorigin fetchpriority="high">
+    
+    <!-- Prefetch common Spline runtime chunks -->
+    <link rel="prefetch" href="https://unpkg.com/@splinetool/runtime" crossorigin>
+    <link rel="prefetch" href="https://unpkg.com/@splinetool/viewer" crossorigin>
     <title>frontend</title>
   </head>
   <body>

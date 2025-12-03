@@ -11,6 +11,11 @@ export default function Hero() {
   const mouseYSpring = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    // Performance mark for hero render
+    if (typeof performance !== 'undefined' && performance.mark) {
+      performance.mark('hero-mount')
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
@@ -29,23 +34,23 @@ export default function Hero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-6 pt-32"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32"
     >
-      {/* Radial gradient overlay with parallax */}
+      {/* Radial gradient overlay with parallax - disabled on mobile */}
       <motion.div 
-        className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black pointer-events-none"
+        className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black pointer-events-none hidden md:block"
         style={{
           x: mouseXSpring,
           y: mouseYSpring,
         }}
       />
       
-      {/* Grid background effect with parallax */}
+      {/* Grid background effect with parallax - reduced opacity on mobile */}
       <motion.div 
-        className="absolute inset-0 opacity-[0.025]"
+        className="absolute inset-0 opacity-[0.015] md:opacity-[0.025]"
         style={{
           backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
+          backgroundSize: '40px 40px',
           x: useTransform(mouseXSpring, (value) => value * 0.5),
           y: useTransform(mouseYSpring, (value) => value * 0.5),
         }}
@@ -53,10 +58,10 @@ export default function Hero() {
 
       <div className="relative w-full max-w-7xl">
         {/* Main content: heading on left, 3D scene on right */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
           {/* Main heading with staggered animation */}
-          <div className="text-left flex-1">
-            <h1 className="text-[90px] md:text-[120px] lg:text-[140px] xl:text-[150px] font-light leading-[0.85] tracking-[-0.02em]">
+          <div className="text-center md:text-left flex-1">
+            <h1 className="text-[56px] sm:text-[70px] md:text-[100px] lg:text-[130px] xl:text-[150px] font-light leading-[0.9] md:leading-[0.85] tracking-[-0.02em]">
               <motion.div 
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -98,7 +103,7 @@ export default function Hero() {
 
           {/* 3D Spline scene beside heading */}
           <div className="flex justify-center md:justify-end shrink-0">
-            <div className="w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px]">
+            <div className="w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-80 md:h-80 lg:w-[380px] lg:h-[380px] xl:w-[420px] xl:h-[420px]">
               <SplineScene
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"
@@ -116,7 +121,7 @@ export default function Hero() {
             duration: 0.8,
             ease: [0.23, 1, 0.32, 1]
           }}
-          className="mt-12 text-xs text-white/60 tracking-[0.15em] uppercase leading-relaxed text-center md:text-right md:pr-32 relative z-10"
+          className="mt-8 sm:mt-10 md:mt-12 text-[10px] sm:text-xs text-white/60 tracking-[0.12em] sm:tracking-[0.15em] uppercase leading-relaxed text-center md:text-right md:pr-32 relative z-10 px-4"
         >
           Soon every AI will need identity. Orynth is where that identity begins.
         </motion.p>
@@ -139,7 +144,7 @@ export default function Hero() {
               ease: [0.25, 0.46, 0.45, 0.94]
             }
           }}
-          className="mt-3 flex justify-center md:justify-end md:pr-32"
+          className="mt-6 sm:mt-8 md:mt-3 flex justify-center md:justify-end md:pr-32"
         >
           <motion.button 
             whileHover={{ 
@@ -151,7 +156,7 @@ export default function Hero() {
               boxShadow: "0 4px 16px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.4)"
             }}
             transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
-            className="w-16 h-16 rounded-full flex items-center justify-center cursor-pointer relative group"
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center cursor-pointer relative group touch-manipulation"
             style={{
               background: 'radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.8) 25%, rgba(180, 180, 180, 0.6) 50%, rgba(120, 120, 120, 0.5) 75%, rgba(80, 80, 80, 0.6))',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
