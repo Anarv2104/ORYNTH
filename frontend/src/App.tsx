@@ -1,5 +1,6 @@
 import MainLayout from "./layout/MainLayout.tsx";
 import ParallaxCards from "./components/ParallaxCards.tsx";
+import About from "./components/About.tsx";
 
 export default function App() {
   return (
@@ -39,6 +40,9 @@ export default function App() {
 
       {/* Parallax Cards Section */}
       <ParallaxCards />
+
+      {/* About Section */}
+      <About />
     </MainLayout>
   );
 }
