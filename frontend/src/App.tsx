@@ -1,6 +1,7 @@
 import MainLayout from "./layout/MainLayout.tsx";
 import ParallaxCards from "./components/ParallaxCards.tsx";
 import About from "./components/About.tsx";
+import Marquee from "./components/Marquee.tsx";
 
 export default function App() {
   return (
@@ -43,6 +44,9 @@ export default function App() {
 
       {/* About Section */}
       <About />
+
+      {/* Marquee Loop Section */}
+      <Marquee />
     </MainLayout>
   );
 }
