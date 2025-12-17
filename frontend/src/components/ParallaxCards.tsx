@@ -13,9 +13,9 @@ export default function ParallaxCards() {
 
   // Smooth scroll progress
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 18,
-    mass: 0.2
+    stiffness: 60,
+    damping: 20,
+    mass: 0.3
   });
 
   // Scroll-based transformations - cards start stacked, then drift apart far enough to reveal middle card

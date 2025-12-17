@@ -11,23 +11,26 @@ interface SplineSceneProps {
 export function SplineScene({ scene, className }: SplineSceneProps) {
   const [sceneUrl, setSceneUrl] = useState<string | null>(null)
   const [shouldLoad, setShouldLoad] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
+  const splineRef = useRef<any>(null)
 
-  // Intersection Observer: only load Spline when container is near viewport
+  // Intersection Observer: load Spline when near viewport, pause when scrolled away
   useEffect(() => {
     if (!containerRef.current) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !shouldLoad) {
             setShouldLoad(true)
-            observer.disconnect()
           }
+          // Pause/resume rendering based on visibility
+          setIsVisible(entry.isIntersecting)
         })
       },
       {
-        rootMargin: "200px", // Start loading 200px before element enters viewport
+        rootMargin: "200px",
         threshold: 0,
       }
     )
@@ -35,7 +38,32 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
     observer.observe(containerRef.current)
 
     return () => observer.disconnect()
+  }, [shouldLoad])
+
+  // Pause animations when tab is inactive (Page Visibility API)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
   }, [])
+
+  // Control Spline rendering based on visibility
+  useEffect(() => {
+    if (splineRef.current && splineRef.current.pause && splineRef.current.play) {
+      if (isVisible) {
+        splineRef.current.play()
+      } else {
+        splineRef.current.pause()
+      }
+    }
+  }, [isVisible])
 
   // Fetch scene as blob for better caching and performance
   useEffect(() => {
@@ -113,7 +141,16 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
           }
         >
           {/* @ts-ignore - Spline types can be added later if needed */}
-          <Spline scene={sceneUrl} className={className} />
+          <Spline 
+            scene={sceneUrl} 
+            className={className}
+            onLoad={(spline: any) => {
+              splineRef.current = spline
+              if (!isVisible && spline.pause) {
+                spline.pause()
+              }
+            }}
+          />
         </Suspense>
       )}
     </div>

@@ -79,7 +79,9 @@ export default function Marquee() {
           width: max-content;
           animation: marqueeScroll 25s linear infinite;
           will-change: transform;
-          transform: translateZ(0);
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          perspective: 1000px;
         }
 
         /* Sequence wrapper */
@@ -104,6 +106,8 @@ export default function Marquee() {
           filter: brightness(2.3) grayscale(0.75) contrast(0.65);
           margin-left: 0.625rem;
           margin-right: 0.625rem;
+          will-change: transform;
+          transform: translateZ(0);
         }
 
         @media (min-width: 640px) {
@@ -135,6 +139,8 @@ export default function Marquee() {
           filter: brightness(2.3) grayscale(0.75) contrast(0.65);
           flex-shrink: 0;
           white-space: nowrap;
+          will-change: transform;
+          transform: translateZ(0);
         }
 
         @media (min-width: 640px) {
