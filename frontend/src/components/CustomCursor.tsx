@@ -3,16 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice] = useState(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0);
   const requestRef = useRef<number | null>(null);
   const positionRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Check if device supports touch
-    const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    setIsTouchDevice(hasTouch);
-
-    if (hasTouch) return; // Don't set up cursor on touch devices
+    if (isTouchDevice) return; // Don't set up cursor on touch devices
 
     const updatePosition = (e: MouseEvent) => {
       positionRef.current = { x: e.clientX, y: e.clientY };
@@ -46,7 +42,7 @@ export default function CustomCursor() {
         cancelAnimationFrame(requestRef.current);
       }
     };
-  }, []);
+  }, [isTouchDevice]);
 
   // Don't render cursor on touch devices
   if (isTouchDevice) {
