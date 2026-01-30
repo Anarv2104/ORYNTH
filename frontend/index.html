@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/2.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Critical CSS for instant load feel -->
+    <style>
+      html, body { background: #000; margin: 0; padding: 0; }
+      #root { background: #000; min-height: 100vh; }
+    </style>
+    
     <!-- Aggressive preconnect/prefetch for Spline assets with high priority -->
     <link rel="preconnect" href="https://prod.spline.design" crossorigin />
     <link rel="preconnect" href="https://cdn.spline.design" crossorigin />
     <link rel="dns-prefetch" href="https://prod.spline.design" />
     <link rel="dns-prefetch" href="https://cdn.spline.design" />
+    
+    <!-- Preload fonts if using any custom fonts -->
+    <link rel="preload" href="/Transparent logo 1.png" as="image" />
     
     <!-- High priority preload for Spline scene -->
     <link rel="preload" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" as="fetch" crossorigin fetchpriority="high">

@@ -15,9 +15,13 @@ void fetch('https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode', {
 function AppWithLenis() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.2,
+      infinite: false,
+      lerp: 0.1,
     })
 
     function raf(time: number) {

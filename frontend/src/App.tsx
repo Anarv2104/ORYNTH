@@ -2,6 +2,9 @@ import MainLayout from "./layout/MainLayout.tsx";
 import ParallaxCards from "./components/ParallaxCards.tsx";
 import About from "./components/About.tsx";
 import Marquee from "./components/Marquee.tsx";
+import IdentityGap from "./components/IdentityGap.tsx";
+import TheShift from "./components/TheShift.tsx";
+import WhatIsOrynth from "./components/WhatIsOrynth.tsx";
 
 export default function App() {
   return (
@@ -47,6 +50,18 @@ export default function App() {
 
       {/* Marquee Loop Section */}
       <Marquee />
+
+      {/* The Identity Gap Section */}
+      <IdentityGap />
+
+      {/* The Shift Section */}
+      <TheShift />
+
+      {/* Marquee Loop Section 2 */}
+      <Marquee />
+
+      {/* What Is Orynth Section */}
+      <WhatIsOrynth />
     </MainLayout>
   );
 }
