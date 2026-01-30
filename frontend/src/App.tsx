@@ -5,6 +5,12 @@ import Marquee from "./components/Marquee.tsx";
 import IdentityGap from "./components/IdentityGap.tsx";
 import TheShift from "./components/TheShift.tsx";
 import WhatIsOrynth from "./components/WhatIsOrynth.tsx";
+import BenefitsGrid from "./components/BenefitsGrid.tsx";
+import ReliabilityControl from "./components/ReliabilityControl.tsx";
+import TrustEnforcement from "./components/TrustEnforcement.tsx";
+import CTASection from "./components/CTASection.tsx";
+import HelpSection from "./components/HelpSection.tsx";
+import Footer from "./components/Footer.tsx";
 
 export default function App() {
   return (
@@ -62,6 +68,24 @@ export default function App() {
 
       {/* What Is Orynth Section */}
       <WhatIsOrynth />
+
+      {/* Benefits Grid Section */}
+      <BenefitsGrid />
+
+      {/* Reliability & Control Section */}
+      <ReliabilityControl />
+
+      {/* Trust Enforcement Section */}
+      <TrustEnforcement />
+
+      {/* CTA Section */}
+      <CTASection />
+
+      {/* Help / FAQ Section */}
+      <HelpSection />
+
+      {/* Footer */}
+      <Footer />
     </MainLayout>
   );
 }
