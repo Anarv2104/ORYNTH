@@ -39,7 +39,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#050505] pt-20 md:pt-28 pb-8">
       {/* Top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28">
         <div className="max-w-7xl mx-auto">

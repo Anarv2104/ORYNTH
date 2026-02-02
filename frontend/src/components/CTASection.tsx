@@ -85,7 +85,7 @@ export default function CTASection() {
           
           {/* Circle 4 - Largest */}
           <div 
-            className="absolute inset-0 rounded-full blur-[4px]" 
+            className="absolute inset-0 rounded-full blur-xs" 
             style={{ 
               width: '1200px', 
               height: '1200px', 

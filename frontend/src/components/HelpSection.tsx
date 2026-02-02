@@ -57,7 +57,7 @@ function FAQAccordion({ item, isOpen, onToggle, index }: {
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <svg
             width="20"
@@ -122,7 +122,7 @@ export default function HelpSection() {
       {/* Header Section */}
       <div className="relative px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 pt-24 md:pt-32 pb-16">
         {/* Subtle gradient line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
         
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-12">
           <motion.div
@@ -299,7 +299,7 @@ export default function HelpSection() {
       </div>
 
       {/* Background decoration */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/5 to-transparent" />
     </section>
   );
 }
