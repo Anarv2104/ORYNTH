@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Secrets / environment
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+coverage/
+**/coverage/
+
+# Python
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+*.pyc
+
+# Logs
+*.log
+
+# IDE
+.vscode/settings.local.json
+
+# Local databases
+*.sqlite
+*.sqlite3
+
+# Separate repository
+/ORYNTH/
